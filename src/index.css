@@ -24,6 +24,12 @@ body {
   margin-top: 25vh;
   font-size: 6vw;
   color: white;
+  width: 100%;
+  text-align: center;
+  min-height: 8vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .subheading {
@@ -42,10 +48,13 @@ body {
 
 .progress-bar {
   width: 50vw;
+  max-width: 600px;
+  min-width: 300px;
   background-color: #f3f3f3;
   border-radius: 6px;
   overflow: hidden;
   position: relative;
+  box-sizing: border-box;
 }
 
 .progress-bar-fill {
@@ -59,6 +68,8 @@ body {
   text-align: center;
   white-space: nowrap;
   position: relative;
+  transition: width 0.3s ease;
+  box-sizing: border-box;
 }
 
 .progress-bar-text {

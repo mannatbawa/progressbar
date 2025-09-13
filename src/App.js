@@ -5,7 +5,7 @@ import moment from "moment";
 
 function App() {
   const startTime = moment("2025-08-25T00:00:00");
-  const endTime = moment("2025-05-16T00:00:00");
+  const endTime = moment("2026-05-01T00:00:00");
   const totalTime = moment.duration(endTime.diff(startTime));
   const totalSeconds = totalTime.asSeconds();
 
@@ -13,17 +13,17 @@ function App() {
     moment().format("YYYY-MM-DD HH:mm:ss")
   );
 
-  const calcElapsed = () => {
+  const [elapsedTime, setElapsedTime] = useState(() => {
     const now = moment();
-    const remainingTime = moment.duration(endTime.diff(now));
-    const elapsedTime = moment.duration(totalTime - remainingTime);
+    const elapsedTime = moment.duration(now.diff(startTime));
     if (elapsedTime >= totalTime) {
       return totalTime;
     }
+    if (elapsedTime < 0) {
+      return moment.duration(0);
+    }
     return elapsedTime;
-  };
-
-  const [elapsedTime, setElapsedTime] = useState(calcElapsed);
+  });
 
   useEffect(() => {
     const updateTime = () => {
@@ -39,15 +39,23 @@ function App() {
 
   useEffect(() => {
     const updateElap = () => {
-      // const now = moment();
-      setElapsedTime(calcElapsed);
-      // console.log(now);
+      const now = moment();
+      const elapsedTime = moment.duration(now.diff(startTime));
+      let newElapsedTime;
+      if (elapsedTime >= totalTime) {
+        newElapsedTime = totalTime;
+      } else if (elapsedTime < 0) {
+        newElapsedTime = moment.duration(0);
+      } else {
+        newElapsedTime = elapsedTime;
+      }
+      setElapsedTime(newElapsedTime);
     };
 
     const myInterval = setInterval(updateElap, 100);
 
     return () => clearInterval(myInterval);
-  }, []);
+  }, [startTime, totalTime]);
 
   return (
     <div className="App">
