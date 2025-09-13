@@ -4,8 +4,8 @@ import React, { useEffect, useState } from "react";
 import moment from "moment";
 
 function App() {
-  const startTime = moment("2024-08-26T14:00:00");
-  const endTime = moment("2025-05-15T00:00:00");
+  const startTime = moment("2025-08-25T00:00:00");
+  const endTime = moment("2025-05-16T00:00:00");
   const totalTime = moment.duration(endTime.diff(startTime));
   const totalSeconds = totalTime.asSeconds();
 

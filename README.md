@@ -1,3 +1,3 @@
-# My first REACT project
+# My first React project
 
-TW: a little bit anxiety-inducing. It's a constant calculator that tells you what percent of the school year is done.
+TW: a little bit anxiety-inducing. It's a constant time calculator that tells you what percent of the school year is done.
